@@ -5,7 +5,7 @@ const sb = SUPABASE_READY ? createClient(window.BDH_SUPABASE_URL, window.BDH_SUP
 
 const fallback = {
   tagline: 'A creative home for Bengali fan dubbing, voice artists and storytellers.',
-  facebook: 'https://www.facebook.com/BanglaDubHubOfficial/',
+  facebook: 'https://www.facebook.com',
   logo_url: 'assets/bdh-logo.jpg'
 };
 let site = {...fallback}, admins = [], members = [], works = [], session = null, isAdmin = false;
