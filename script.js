@@ -5,7 +5,7 @@ const sb = SUPABASE_READY ? createClient(window.BDH_SUPABASE_URL, window.BDH_SUP
 
 const fallback = {
   tagline: 'A creative home for Bengali fan dubbing, voice artists and storytellers.',
-  facebook: 'https://www.facebook.com',
+  facebook: 'https://www.facebook.com/',
   logo_url: 'assets/bdh-logo.jpg'
 };
 let site = {...fallback}, admins = [], members = [], works = [], session = null, isAdmin = false;
@@ -97,14 +97,4 @@ async function addWork(){const {error}=await sb.from('works').insert({title:'New
 async function deleteWork(i){if(confirm('Delete this work?')){const {error}=await sb.from('works').delete().eq('id',works[i].id);if(error)alert(error.message);else{await loadPublic();await adminPanel()}}}
 
 async function boot(){ $('#year').textContent=new Date().getFullYear(); $('#adminBtn').onclick=openAdmin; if(!SUPABASE_READY){render();return;} const {data}=await sb.auth.getSession();session=data.session; sb.auth.onAuthStateChange((_event,s)=>{session=s}); await loadPublic(); }
-function openAdmin() {
-  openModal(
-    <div class="form">
-      <h2>Admin Panel</h2>
-      <p>Admin Panel is working.</p>
-      <button onclick="closeModal()">Close</button>
-    </div>
-  );
-}
-
 boot();
